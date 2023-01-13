@@ -55,5 +55,6 @@ scipy
 
 # Reference
 
-[1] TBA
+[1]
+Siqin Cao, Yunrui Qiu, Michael Kalin, and Xuhui Huang, Integrative Generalized Master Equation: A Theory to Study Long-timescale Biomolecular Dynamics via the Integrals of Memory Kernels, https://doi.org/10.26434/chemrxiv-2022-0n9ld
 
