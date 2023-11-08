@@ -1,14 +1,11 @@
 # Author: Siqin Cao <siqincao@gmail.com>
-# Copyright (c) 2021-2023, University of Wisconsin-Madison
+# Copyright (c) 2023, University of Wisconsin-Madison and the authors
 # All rights reserved.
 
 """ Integrative Generalized Master Equation (IGME)
-Use the Least Square fitting algorithm to build IGME model(s) from given
-time-dependent transition probability matrics. The IGME can provide
-numerically stable approaches to compute long-time dynamics and time integrated
-memory kernels.
+Use the Least Square fitting algorithm to build IGME model(s) 
 
-The theory of IGME (http://doi.org/10.26434/chemrxiv-2022-0n9ld-v2):
+The theory of IGME (http://doi.org/10.1063/5.0167287):
     T(t) = A \hat{T}^t
 
 The implementation in this python script:
@@ -20,8 +17,6 @@ The implementation in this python script:
   IGME._theory == 3:
     constructed with    ln T(t) = ln A + t ln \hat{T}
     RMSE computed with  T(t) = A^0.5 \hat{T}^t A^0.5
-The theory behind the default theory will be derived in the theory of spectral
-IGME. 
 """
 
 import numpy
@@ -92,7 +87,8 @@ class IGMENS :
             syy = numpy.dot(y[i], y[i]) / length
             sxy = Z[i]
             R[i] = (sxy - sx*sy) / numpy.sqrt((sxx-sx*sx) * (syy - sy*sy))
-        M[2*dimension,2*dimension] = -1
+        M[2*dimension,2*dimension] = 0
+        Z[2*dimension] = 0
         return numpy.matmul(numpy.linalg.inv(M), Z), R
 
     @staticmethod
@@ -137,7 +133,7 @@ class IGME(object) :
         disabled and the accurate logarithm will be used.
         This parameter is used to compute matrix logarithm when eigenvalues
         contain negative components. In such cases, logarithm of matrix will
-        lead to a lot of complex elements.
+        contain complex elements.
 
     Attributes
     ----------
@@ -153,7 +149,6 @@ class IGME(object) :
         A matrix of Pearson Correlation Coefficients
     rmse : real
         The RMSE between input and IGME predictions
-        rmsew : the RMSE is weighted by population
     timescales : array like, shape = (n_state - 1)
         The implied timescales of \hat{T} matrix. This is also the long-time
         limit of implied timescales of IGME
@@ -249,6 +244,7 @@ class IGME(object) :
             will be used instead if end is smaller than begin
         rmse_weighted_by_sp : boolean, default: True
             Allow RMSE weighted by stationary populations
+            The stationary populations are computed by sqrt(T[begin]*T[end])^(1e9)
 
         Returns
         -------
@@ -422,6 +418,7 @@ class IGME(object) :
             will be used instead if end is smaller than begin
         rmse_weighted_by_sp : boolean, default: True
             Allow RMSE weighted by stationary populations
+            The stationary populations are computed by sqrt(T[begin]*T[end])^(1e9)
 
         Returns
         -------
@@ -473,6 +470,7 @@ class IGME(object) :
             The stride steps int the scanning.
         rmse_weighted_by_sp : boolean, default: True
             Allow RMSE weighted by stationary populations
+            The stationary populations are computed by sqrt(T[begin]*T[end])^(1e9)
         debug : boolean, default: False
             If turned on, then all scanned IGME models will be displayed on the
             screen immediately (in CSV format)
