@@ -491,7 +491,7 @@ class IGME(object) :
                     _print_title = False
         return output
 
-    def top_outputs(self, dic, n=1) :
+    def top_outputs(self, dic, n=1, min_its=0, max_its=1e18) :
         """ Extract the top models of an output dictionary.
         Top models are defined by smallest RMSEs.
 
@@ -521,9 +521,21 @@ class IGME(object) :
         ind_rmse = numpy.argsort(dic['rmse'])
         ret = self._init_output_dic()
         temp = IGME()
-        for i in range(n_rec) :
-            temp._from_output(dic, ind_rmse[i])
-            temp.output(ret)
+        n_out = 0
+        #for i in range(n_rec) :
+        for i in range(total_rec) :
+            if numpy.min(numpy.real(dic['timescales'][ind_rmse[i]])) < min_its:
+                #print("data ignored: "+str(dic['timescales'][ind_rmse[i]]))
+                continue
+            elif numpy.max(numpy.real(dic['timescales'][ind_rmse[i]])) > max_its:
+                #print("data ignored: "+str(dic['timescales'][ind_rmse[i]]))
+                continue
+            else :
+                temp._from_output(dic, ind_rmse[i])
+                temp.output(ret)
+                n_out += 1
+            if n_out > n_rec:
+                break
         return ret
 
     def _median_outputs(self, dic) :
@@ -548,7 +560,7 @@ class IGME(object) :
         ret._from_output(dic, ind_rmse[0])
         return ret
 
-    def top_model(self, dic, n=1) :
+    def top_model(self, dic, n=1, min_its=0, max_its=1e18) :
         """Find the median model of top models
         Top models have the smallest RMSEs
         The median model has \ln\hat{T} closest to average
@@ -567,7 +579,7 @@ class IGME(object) :
         output: object 
             returns the best IGME object
         """
-        result = self.top_outputs(dic, n)
+        result = self.top_outputs(dic, n, min_its, max_its)
         ret = self._median_outputs(result)
         return ret
 
