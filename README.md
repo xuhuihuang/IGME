@@ -56,5 +56,5 @@ scipy
 # Reference
 
 [1]
-Siqin Cao, Yunrui Qiu, Michael Kalin, and Xuhui Huang, Integrative Generalized Master Equation: A Theory to Study Long-timescale Biomolecular Dynamics via the Integrals of Memory Kernels, https://doi.org/10.26434/chemrxiv-2022-0n9ld
+Cao, S., Qiu, Y., Kalin, M. L., & Huang, X. (2023). Integrative generalized master equation: A method to study long-timescale biomolecular dynamics via the integrals of memory kernels. The Journal of Chemical Physics, 159(13).
 
