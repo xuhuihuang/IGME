@@ -13,19 +13,23 @@ Understanding conformational dynamics is essential for elucidating the mechanism
 
 ### References
 
-xxx
+AMUSET-TICA-IGME: (TBA)
 
-!!!###  
+AMUSET-TICA:
 
-  
+[Siqin Cao, Feliks Nüske, Bojun Liu, Micheline B. Soley, Xuhui Huang, J. Chem. Theory Comput. 2025, 21, 9, 4855–4866](https://doi.org/10.1021/acs.jctc.5c00076)
+
+IGME: 
+
+[Siqin Cao, Yunrui Qiu, Michael L. Kalin, Xuhui Huang, Integrative generalized master equation: A method to study long-timescale biomolecular dynamics via the integrals of memory kernels, J. Chem. Phys. 159, 134106 (2023)](https://doi.org/10.1063/5.0167287)
+
+[Bojun Liu, Siqin Cao, Jordan G. Boysen, Mingyi Xue, Xuhui Huang, Memory kernel minimization-based neural networks for discovering slow collective variables of biomolecular dynamics, Nature Computational Science volume 5, pages 562–571 (2025)](https://doi.org/10.1038/s43588-025-00815-8)
+
 
 ### Illustration
 
   
-!!!###!!!###
-[architecture figure]
-
-  
+<img src="https://github.com/xuhuihuang/IGME/blob/main/AMUSET-TICA-IGME/release/Figure1.png" height=300></img>
 
   
 
