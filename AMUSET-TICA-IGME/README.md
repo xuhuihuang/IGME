@@ -13,7 +13,8 @@ Understanding conformational dynamics is essential for elucidating the mechanism
 
 ### References
 
-AMUSET-TICA-IGME: (TBA)
+AMUSET-TICA-IGME:
+[Jingcheng Dai, Siqin Cao, Zige Liu, Xuhui Huang, ChemRxiv, 2026](https://chemrxiv.org/doi/full/10.26434/chemrxiv.15004602/v1)
 
 AMUSET-TICA:
 
